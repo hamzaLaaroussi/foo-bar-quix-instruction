@@ -1,3 +1,16 @@
-<div class="container"> 
-    To Be Completed
+<div class="container">
+  <div *ngFor="let result of results" >
+      <h4>{{result}}</h4>
+  </div>
+  <form [formGroup]="convertNumberForm" (ngSubmit)="submitNumber()" novalidate >
+    <label>Number to convert</label>
+    <input type="text" formControlName="numberToConvert" placeholder="Number to convert" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.numberToConvert.errors }" />
+    <div *ngIf="submitted && f.numberToConvert.errors" class="invalid-feedback">
+        <div *ngIf="f.numberToConvert.errors.required">Please enter a valid number</div>
+    </div>
+
+    <div class="modal-footer">
+       <button [disabled]="convertNumberForm.invalid" type="submit" class="btn btn-primary" >Convert</button>
+    </div>
+  </form>
 </div>
